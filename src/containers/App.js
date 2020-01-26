@@ -6,6 +6,7 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
+import Header from '../components/Header';
 //import {robots} from './robots'
 import {setSearchField, requestRobots} from '../actions';
 
@@ -42,7 +43,6 @@ class App extends React.Component {
   */
   componentDidMount(){
     this.props.onRequestRobots();
-    console.log('componentDidMount');
   }
 
   render() {
@@ -52,13 +52,12 @@ class App extends React.Component {
     const filteredRobots = robots.filter(robot => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
-    console.log('render');
     if (isPending){
       return <h1>Loading</h1>
     }else{
       return(
         <div className='tc'>
-          <h1 className='f1'>Robofriends</h1>  
+          <Header />
           <SearchBox searchChange = {onSearchChange}/>
           <Scroll>
             <ErrorBoundry>
